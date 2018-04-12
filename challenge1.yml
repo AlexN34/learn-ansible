@@ -1,0 +1,23 @@
+---
+- name: "Create challenge1 environment and install python"
+  hosts: localhost
+
+  tasks:
+    - name: mkvirtualenv
+      shell: mkvirtualenv challenge1
+      args:
+        executable: /bin/zsh
+    - name: activate virtualenv
+      shell: workon challenge1 && pip install ansible
+      args:
+        executable: /bin/zsh
+    - name: cleanup
+      shell: rmvirtualenv challenge1
+      args:
+        executable: /bin/zsh
+
+  # tasks:
+  #   - name: ansible pip
+  #     pip:
+  #       name: ansible
+  #       virtualenv: ~/challenge1
